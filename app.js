@@ -32,7 +32,7 @@ briefButton.addEventListener("click", async () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: "llama3.2:3b",
+        model: "gemma3:1b",
         stream: false,
         format: "json",
         prompt: `You are OpenBrief, a careful reading assistant. Analyze the text below. Return valid JSON only with exactly these keys: summary (string, 2-3 sentences), claims (array of exactly 3 concise strings that should be verified), questions (array of exactly 3 thoughtful questions). Do not invent facts not present in the source. Source text:\n\n${text}`,
@@ -40,7 +40,7 @@ briefButton.addEventListener("click", async () => {
     });
     if (!response.ok) throw new Error("Ollama is not available");
     const data = await response.json();
-    renderBrief(JSON.parse(data.response), "Generated with Ollama · llama3.2:3b");
+    renderBrief(JSON.parse(data.response), "Generated with Ollama · Gemma 3 1B");
   } catch {
     renderBrief(makeDemoBrief(text), "Demo mode · connect Ollama for local inference");
     showToast("Ollama was not reachable, so a transparent demo brief is shown.");
@@ -68,13 +68,21 @@ function makeDemoBrief(text) {
 }
 
 function renderBrief(brief, label) {
+  const claims = (brief.claims || []).map(normalizeItem).filter(Boolean).slice(0, 3);
+  const questions = (brief.questions || []).map(normalizeItem).filter(Boolean).slice(0, 3);
   document.querySelector("#summary").textContent = brief.summary;
-  document.querySelector("#claims").innerHTML = brief.claims.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
-  document.querySelector("#questions").innerHTML = brief.questions.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  document.querySelector("#claims").innerHTML = claims.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  document.querySelector("#questions").innerHTML = questions.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   modelLabel.textContent = label;
   resultsSection.classList.remove("hidden");
   statusText.textContent = "Brief ready";
   resultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+function normalizeItem(item) {
+  if (typeof item === "string") return item;
+  if (item && typeof item === "object") return item.claim || item.question || item.text || "";
+  return "";
 }
 
 function setBusy(busy) {

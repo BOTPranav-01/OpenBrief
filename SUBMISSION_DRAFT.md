@@ -10,7 +10,7 @@ Dense reading should not require sending private notes to a hosted AI service. O
 
 ## Why open-source AI matters
 
-OpenBrief uses Ollama with the open-weight `llama3.2:3b` model. The browser sends the pasted text to the user's local Ollama service rather than a hosted API. That means the reader can inspect the model choice, run without an account or API key, and keep sensitive reading on their machine.
+OpenBrief uses Ollama with Google's open-weight Gemma 3 1B model. The browser sends the pasted text to the user's local Ollama service rather than a hosted API. That means the reader can inspect the model choice, run without an account or API key, and keep sensitive reading on their machine.
 
 ## How it works
 
@@ -23,7 +23,7 @@ OpenBrief uses Ollama with the open-weight `llama3.2:3b` model. The browser send
 flowchart LR
   A[Article or notes] --> B[OpenBrief browser UI]
   B -->|localhost request| C[Ollama]
-  C --> D[llama3.2:3b open-weight model]
+  C --> D[Gemma 3 1B open-weight model]
   D -->|structured JSON| B
   B --> E[Summary + claims + questions]
 ```
@@ -47,7 +47,7 @@ The model can still make mistakes, so the “claims to check” are prompts for 
 
 ## Credits and license
 
-OpenBrief is original work created during the Hacktoberfest 2026 Weekend Challenge. It uses [Ollama](https://ollama.com/) and the [Llama 3.2 model family](https://www.llama.com/llama-downloads/), and is released under the MIT License.
+OpenBrief is original work created during the Hacktoberfest 2026 Weekend Challenge. It uses [Ollama](https://ollama.com/) and Google's open-weight [Gemma model](https://ai.google.dev/gemma), and is released under the MIT License.
 
 ## AI disclosure
 
@@ -56,3 +56,7 @@ AI tools assisted with implementation and editing. I reviewed the generated code
 ## Team
 
 Solo project.
+
+## Prize Categories
+
+I am entering **Best Use of Gemma**. Gemma is used as the project's actual local inference model through Ollama.

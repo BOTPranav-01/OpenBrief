@@ -18,7 +18,7 @@ Closed AI tools make it easy to paste sensitive reading into a remote service an
 2. Download the open-weight model:
 
    ```bash
-   ollama run llama3.2:3b
+   ollama run gemma3:1b
    ```
 
 3. Serve this directory with any static server, for example:
@@ -33,7 +33,7 @@ The browser calls Ollama at `http://localhost:11434/api/generate`. The model is 
 
 ## Demo mode
 
-If Ollama is unavailable, OpenBrief displays a clearly labeled deterministic demo result. This keeps the interface testable without pretending that the result came from an AI model. The real submission path is Ollama + `llama3.2:3b`.
+If Ollama is unavailable, OpenBrief displays a clearly labeled deterministic demo result. This keeps the interface testable without pretending that the result came from an AI model. The real submission path is Ollama + Gemma 3 1B.
 
 ## Architecture
 
@@ -41,7 +41,7 @@ If Ollama is unavailable, OpenBrief displays a clearly labeled deterministic dem
 flowchart LR
   A[Article or notes] --> B[OpenBrief browser UI]
   B -->|localhost request| C[Ollama]
-  C --> D[llama3.2:3b open-weight model]
+  C --> D[Gemma 3 1B open-weight model]
   D -->|structured JSON| B
   B --> E[Summary + claims + questions]
 ```
@@ -61,4 +61,8 @@ flowchart LR
 
 ## Attribution and license
 
-OpenBrief is original work for the Hacktoberfest 2026 Weekend Challenge. It uses [Ollama](https://ollama.com/) and the [Llama 3.2 model family](https://www.llama.com/llama-downloads/). See [LICENSE](LICENSE).
+OpenBrief is original work for the Hacktoberfest 2026 Weekend Challenge. It uses [Ollama](https://ollama.com/) and Google's open-weight [Gemma model](https://ai.google.dev/gemma). See [LICENSE](LICENSE).
+
+## Prize category
+
+OpenBrief is entering **Best Use of Gemma**. Gemma is the project's actual local inference model, not a post-only claim: the browser requests `gemma3:1b` through Ollama.
