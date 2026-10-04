@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="OpenBrief turns dense reading into a clear, verifiable briefing using local open-source AI." />
+    <title>OpenBrief — Read less. Understand more.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <nav class="nav">
+        <a class="brand" href="./"><span class="brand-mark">◎</span> OpenBrief</a>
+        <span class="privacy-pill"><span class="dot"></span> Local-first AI</span>
+      </nav>
+
+      <section class="hero">
+        <p class="eyebrow">OPEN-SOURCE AI READING DESK</p>
+        <h1>Read less.<br /><em>Understand more.</em></h1>
+        <p class="lede">Turn a dense article into a brief you can actually trust: a plain-English summary, the claims worth checking, and questions that reveal what you missed.</p>
+      </section>
+
+      <section class="workspace" aria-label="OpenBrief workspace">
+        <div class="input-card card">
+          <div class="card-heading">
+            <div>
+              <span class="step">01</span>
+              <h2>Drop in your reading</h2>
+            </div>
+            <button class="text-button" id="loadExample" type="button">Load example ↗</button>
+          </div>
+          <label class="sr-only" for="sourceText">Article or notes</label>
+          <textarea id="sourceText" placeholder="Paste an article, research abstract, meeting notes, or anything you want to understand…"></textarea>
+          <div class="input-footer">
+            <span id="wordCount">0 words</span>
+            <button class="primary-button" id="briefButton" type="button"><span>Build my brief</span><span class="arrow">→</span></button>
+          </div>
+        </div>
+
+        <aside class="how-card card">
+          <span class="step">HOW IT WORKS</span>
+          <ol>
+            <li><b>Paste</b><span>your article or notes</span></li>
+            <li><b>Run locally</b><span>with an open-weight model</span></li>
+            <li><b>Verify</b><span>claims before you share them</span></li>
+          </ol>
+          <div class="privacy-note"><span>⌁</span><p>Your text stays on your machine when Ollama is connected. No account. No tracking.</p></div>
+        </aside>
+      </section>
+
+      <section class="results-section hidden" id="resultsSection" aria-live="polite">
+        <div class="results-header">
+          <div><span class="step">02</span><h2>Your brief</h2></div>
+          <div class="status" id="status"><span class="status-dot"></span><span id="statusText">Ready</span></div>
+        </div>
+        <div class="results-grid">
+          <article class="result-card summary-card">
+            <span class="result-label">THE SHORT VERSION</span>
+            <p id="summary"></p>
+          </article>
+          <article class="result-card">
+            <span class="result-label">CLAIMS TO CHECK</span>
+            <ul id="claims"></ul>
+          </article>
+          <article class="result-card questions-card">
+            <span class="result-label">QUESTIONS TO CARRY FORWARD</span>
+            <ol id="questions"></ol>
+          </article>
+        </div>
+        <div class="result-footer">
+          <span id="modelLabel">Generated locally with an open-weight model</span>
+          <button class="text-button" id="copyButton" type="button">Copy brief ↗</button>
+        </div>
+      </section>
+
+      <footer><span>OPENBRIEF / HACKTOBERFEST 2026</span><span>Open source, local by default.</span></footer>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
