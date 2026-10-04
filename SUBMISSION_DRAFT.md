@@ -4,8 +4,8 @@ Dense reading should not require sending private notes to a hosted AI service. O
 
 ## Try it
 
-- Repository: **TODO: add the public repository URL**
-- Demo: **TODO: add the deployed demo URL**
+- Repository: https://github.com/BOTPranav-01/OpenBrief
+- Demo: https://botpranav-01.github.io/OpenBrief/
 - Local setup: see the [README](./README.md)
 
 ## Why open-source AI matters
@@ -55,4 +55,4 @@ AI tools assisted with implementation and editing. I reviewed the generated code
 
 ## Team
 
-Solo project. **TODO: list teammate DEV handles if applicable.**
+Solo project.

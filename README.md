@@ -4,6 +4,10 @@
 
 OpenBrief is a local-first reading desk that turns a dense article, research abstract, or meeting note into a concise brief: a plain-English summary, claims worth checking, and questions to carry forward.
 
+**Live demo:** https://botpranav-01.github.io/OpenBrief/
+
+**Repository:** https://github.com/BOTPranav-01/OpenBrief
+
 ## Why this project
 
 Closed AI tools make it easy to paste sensitive reading into a remote service and receive an answer that sounds confident. OpenBrief makes the trade-off visible: use an open-weight model locally, inspect the output, and keep the original text on your machine.
